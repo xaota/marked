@@ -1,7 +1,7 @@
 import Renderer from './Renderer.js';
 import defaults from './defaults.js';
 import { inline } from './rules.js';
-import {findClosingBracket, escape} from './helpers.js';
+import { findClosingBracket, escape } from './helpers.js';
 
 /**
  * Inline Lexer & Compiler
@@ -49,13 +49,13 @@ export default class InlineLexer {
    * Lexing/Compiling
    */
   output(src) {
-    let out = '',
-      link,
-      text,
-      href,
-      title,
-      cap,
-      prevCapZero;
+    let out = '';
+      let link;
+      let text;
+      let href;
+      let title;
+      let cap;
+      let prevCapZero;
 
     while (src) {
       // escape
@@ -122,8 +122,8 @@ export default class InlineLexer {
       }
 
       // reflink, nolink
-      if ((cap = this.rules.reflink.exec(src))
-          || (cap = this.rules.nolink.exec(src))) {
+      if ((cap = this.rules.reflink.exec(src)) ||
+          (cap = this.rules.nolink.exec(src))) {
         src = src.substring(cap[0].length);
         link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
         link = this.links[link.toLowerCase()];
@@ -237,8 +237,8 @@ export default class InlineLexer {
    * Compile Link
    */
   outputLink(cap, link) {
-    const href = link.href,
-      title = link.title ? escape(link.title) : null;
+    const href = link.href;
+      const title = link.title ? escape(link.title) : null;
 
     return cap[0].charAt(0) !== '!'
       ? this.renderer.link(href, title, this.output(cap[1]))
@@ -273,9 +273,9 @@ export default class InlineLexer {
   mangle(text) {
     if (!this.options.mangle) return text;
     const l = text.length;
-    let out = '',
-      i = 0,
-      ch;
+    let out = '';
+      let i = 0;
+      let ch;
 
     for (; i < l; i++) {
       ch = text.charCodeAt(i);

@@ -3,7 +3,7 @@ import Slugger from './Slugger.js';
 import InlineLexer from './InlineLexer.js';
 import TextRenderer from './TextRenderer.js';
 import defaults from './defaults.js';
-import {merge, unescape} from './helpers.js';
+import { merge, unescape } from './helpers.js';
 
 /**
  * Parsing & Compiling
@@ -100,11 +100,11 @@ export default class Parser {
           this.token.escaped);
       }
       case 'table': {
-        let header = '',
-          i,
-          row,
-          cell,
-          j;
+        let header = '';
+          let i;
+          let row;
+          let cell;
+          let j;
 
         // header
         cell = '';
@@ -142,8 +142,8 @@ export default class Parser {
       }
       case 'list_start': {
         body = '';
-        const ordered = this.token.ordered,
-          start = this.token.start;
+        const ordered = this.token.ordered;
+          const start = this.token.start;
 
         while (this.next().type !== 'list_end') {
           body += this.tok();

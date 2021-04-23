@@ -1,5 +1,5 @@
 import defaults from './defaults.js';
-import {cleanUrl, escape} from './helpers.js';
+import { cleanUrl, escape } from './helpers.js';
 
 /**
  * Renderer
@@ -20,17 +20,17 @@ export default class Renderer {
     }
 
     if (!lang) {
-      return '<pre><code>'
-        + (escaped ? code : escape(code, true))
-        + '</code></pre>';
+      return '<pre><code>' +
+        (escaped ? code : escape(code, true)) +
+        '</code></pre>';
     }
 
-    return '<pre><code class="'
-      + this.options.langPrefix
-      + escape(lang, true)
-      + '">'
-      + (escaped ? code : escape(code, true))
-      + '</code></pre>\n';
+    return '<pre><code class="' +
+      this.options.langPrefix +
+      escape(lang, true) +
+      '">' +
+      (escaped ? code : escape(code, true)) +
+      '</code></pre>\n';
   };
 
   blockquote(quote) {
@@ -43,16 +43,16 @@ export default class Renderer {
 
   heading(text, level, raw, slugger) {
     if (this.options.headerIds) {
-      return '<h'
-        + level
-        + ' id="'
-        + this.options.headerPrefix
-        + slugger.slug(raw)
-        + '">'
-        + text
-        + '</h'
-        + level
-        + '>\n';
+      return '<h' +
+        level +
+        ' id="' +
+        this.options.headerPrefix +
+        slugger.slug(raw) +
+        '">' +
+        text +
+        '</h' +
+        level +
+        '>\n';
     }
     // ignore IDs
     return '<h' + level + '>' + text + '</h' + level + '>\n';
@@ -63,8 +63,8 @@ export default class Renderer {
   };
 
   list(body, ordered, start) {
-    const type = ordered ? 'ol' : 'ul',
-      startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
+    const type = ordered ? 'ol' : 'ul';
+      const startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
     return '<' + type + startatt + '>\n' + body + '</' + type + '>\n';
   };
 
@@ -73,11 +73,11 @@ export default class Renderer {
   };
 
   checkbox(checked) {
-    return '<input '
-      + (checked ? 'checked="" ' : '')
-      + 'disabled="" type="checkbox"'
-      + (this.options.xhtml ? ' /' : '')
-      + '> ';
+    return '<input ' +
+      (checked ? 'checked="" ' : '') +
+      'disabled="" type="checkbox"' +
+      (this.options.xhtml ? ' /' : '') +
+      '> ';
   };
 
   paragraph(text) {
@@ -87,12 +87,12 @@ export default class Renderer {
   table(header, body) {
     if (body) body = '<tbody>' + body + '</tbody>';
 
-    return '<table>\n'
-      + '<thead>\n'
-      + header
-      + '</thead>\n'
-      + body
-      + '</table>\n';
+    return '<table>\n' +
+      '<thead>\n' +
+      header +
+      '</thead>\n' +
+      body +
+      '</table>\n';
   };
 
   tablerow(content) {

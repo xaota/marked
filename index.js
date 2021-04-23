@@ -4,8 +4,8 @@ import Renderer from './library/Renderer.js';
 import TextRenderer from './library/TextRenderer.js';
 import InlineLexer from './library/InlineLexer.js';
 import Slugger from './library/Slugger.js';
-import {merge, checkSanitizeDeprecation, escape} from './library/helpers.js';
-import defaults, {getDefaults} from './library/defaults.js';
+import { merge, checkSanitizeDeprecation, escape } from './library/helpers.js';
+import defaults, { getDefaults } from './library/defaults.js';
 
 /**
  * Marked
@@ -16,8 +16,8 @@ function marked(src, opt, callback) {
     throw new Error('marked(): input parameter is undefined or null');
   }
   if (typeof src !== 'string') {
-    throw new Error('marked(): input parameter is of type '
-      + Object.prototype.toString.call(src) + ', string expected');
+    throw new Error('marked(): input parameter is of type ' +
+      Object.prototype.toString.call(src) + ', string expected');
   }
 
   if (callback || typeof opt === 'function') {
@@ -29,9 +29,9 @@ function marked(src, opt, callback) {
     opt = merge({}, marked.defaults, opt || {});
     checkSanitizeDeprecation(opt);
     const highlight = opt.highlight;
-    let tokens,
-      pending,
-      i = 0;
+    let tokens;
+      let pending;
+      let i = 0;
 
     try {
       tokens = Lexer.lex(src, opt);
@@ -96,9 +96,9 @@ function marked(src, opt, callback) {
   } catch (e) {
     e.message += '\nPlease report this to https://github.com/markedjs/marked.';
     if ((opt || marked.defaults).silent) {
-      return '<p>An error occurred:</p><pre>'
-        + escape(e.message + '', true)
-        + '</pre>';
+      return '<p>An error occurred:</p><pre>' +
+        escape(e.message + '', true) +
+        '</pre>';
     }
     throw e;
   }

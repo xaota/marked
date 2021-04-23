@@ -1,6 +1,6 @@
 import defaults from './defaults.js';
-import {block} from './rules.js';
-import {rtrim, splitCells, escape} from './helpers.js';
+import { block } from './rules.js';
+import { rtrim, splitCells, escape } from './helpers.js';
 
 /**
  * Block Lexer
@@ -229,7 +229,8 @@ export default class Lexer {
           // Backpedal if it does not belong in this list.
           if (i !== l - 1) {
             b = block.bullet.exec(cap[i + 1])[0];
-            if (bull.length > 1 ? b.length === 1
+            if (bull.length > 1
+? b.length === 1
               : (b.length > 1 || (this.options.smartLists && b !== bull))) {
               src = cap.slice(i + 1).join('\n') + src;
               i = l - 1;
@@ -297,8 +298,8 @@ export default class Lexer {
           type: this.options.sanitize
             ? 'paragraph'
             : 'html',
-          pre: !this.options.sanitizer
-            && (cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style'),
+          pre: !this.options.sanitizer &&
+            (cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style'),
           text: this.options.sanitize ? (this.options.sanitizer ? this.options.sanitizer(cap[0]) : escape(cap[0])) : cap[0]
         });
         continue;

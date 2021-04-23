@@ -125,9 +125,9 @@ function resolveUrl(base, href) {
 const noopTest = { exec: function noopTest() {} };
 
 function merge(obj) {
-  let i = 1,
-    target,
-    key;
+  let i = 1;
+    let target;
+    let key;
 
   for (; i < arguments.length; i++) {
     target = arguments[i];
@@ -145,8 +145,8 @@ function splitCells(tableRow, count) {
   // ensure that every cell-delimiting pipe has a space
   // before it to distinguish it from an escaped pipe
   const row = tableRow.replace(/\|/g, (match, offset, str) => {
-      let escaped = false,
-        curr = offset;
+      let escaped = false;
+        let curr = offset;
       while (--curr >= 0 && str[curr] === '\\') escaped = !escaped;
       if (escaped) {
         // odd number of slashes means | is escaped
@@ -156,8 +156,8 @@ function splitCells(tableRow, count) {
         // add space before unescaped |
         return ' |';
       }
-    }),
-    cells = row.split(/ \|/);
+    });
+    const cells = row.split(/ \|/);
   let i = 0;
 
   if (cells.length > count) {
@@ -205,8 +205,8 @@ function findClosingBracket(str, b) {
     return -1;
   }
   const l = str.length;
-  let level = 0,
-    i = 0;
+  let level = 0;
+    let i = 0;
   for (; i < l; i++) {
     if (str[i] === '\\') {
       i++;
